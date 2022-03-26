@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<script crossorigin="anonymous" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.1/axios.min.js"></script>
+</head>
+<body>
+<button>GET</button>
+<button>POST</button>
+<button>AJAX</button>
+<script>
+    import {response} from "express";
+
+    const btns = document.querySelectorAll('button');
+    axios.defaults.baseURL = 'http://127.0.0.1:8000';
+    btns[0].onclick = () => {
+        axios.get('/axios-server', {
+            params: {
+                id: 100,
+                vip: 7
+            },
+            headers: {
+                name: 'CrazyCatZhang',
+                age: 20
+            }
+        }).then(value => {
+            console.log(value);
+        });
+    };
+
+    btns[1].onclick = () => {
+        axios.post('/axios-server', {
+            username: 'admin',
+            password: 'admin'
+        }, {
+            params: {
+                id: 200,
+                vip: 8
+            },
+            headers: {
+                height: 180,
+                weight: 180
+            }
+        }).then(value => {
+            console.log(value);
+        });
+    };
+
+    btns[2].onclick = () => {
+        axios({
+            method: 'POST',
+            url: '/axios-server',
+            params: {
+                vip: 10,
+                level: 300
+            },
+            headers: {
+                a: 100,
+                b: 200
+            },
+            data: {
+                username: 'admin',
+                password: 'admin'
+            }
+        }).then(response => {
+            console.log(response);
+        });
+    };
+</script>
+</body>
+</html>
