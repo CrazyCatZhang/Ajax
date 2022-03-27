@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<style>
+        #result {
+            width: 200px;
+            height: 100px;
+            border: 1px solid #bfa;
+        }
+	</style>
+	<script crossorigin="anonymous" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+<button>点击发送jsonp请求</button>
+<div id="result"></div>
+<script>
+    $('button').eq(0).click(function () {
+        $.getJSON('http://127.0.0.1:8000/jquery-jsonp-server?callback=?', function (data) {
+            // console.log(data);
+            $('#result').html(`
+	            name: ${data.name} <br>
+	            sex: ${data.sex}
+	        `);
+        });
+    });
+</script>
+</body>
+</html>
